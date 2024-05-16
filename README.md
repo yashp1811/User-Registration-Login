@@ -1,5 +1,4 @@
 
-
 # User Registration & Login System
 
 This project implements a secure user registration and login system using Flask for the backend, PostgreSQL for the database, and HTML/CSS/JavaScript for the frontend.
@@ -31,10 +30,31 @@ pip install -r requirements.txt
 3. **Database Setup**:
 
    - Install and configure PostgreSQL.
-   - Create a database named `your_database_name`.
-   - Update the database connection URI in `config.py`.
+   - Create a database named `your_database_name`. You can do this using the following SQL command:
+   
+   ```sql
+   CREATE DATABASE your_database_name;
+   ```
 
-4. **Run the application**:
+   - Connect to your database and create the necessary table. Here's an example SQL command to create the `userstest` table with the required columns:
+
+   ```sql
+   CREATE TABLE userstest (
+       UserID SERIAL PRIMARY KEY,
+       Email VARCHAR(255) UNIQUE NOT NULL,
+       Username VARCHAR(255) NOT NULL,
+       PasswordHash VARCHAR(255) NOT NULL,
+       EmailVerified BOOLEAN DEFAULT FALSE,
+       OTP VARCHAR(6),
+       OTPCreatedAt TIMESTAMP
+   );
+   ```
+
+4. **Update Configuration**:
+
+   - Update `config.py` with your database connection URI, email settings, and any other configuration parameters.
+
+5. **Run the application**:
 
 ```bash
 python app.py
@@ -49,4 +69,3 @@ The application will be running at [http://localhost:5000](http://localhost:5000
 ## Contributing
 
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
-
