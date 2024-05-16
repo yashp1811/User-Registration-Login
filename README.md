@@ -50,6 +50,3 @@ The application will be running at [http://localhost:5000](http://localhost:5000
 
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
