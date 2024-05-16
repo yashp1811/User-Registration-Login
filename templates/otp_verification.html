@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Event listener for Resend OTP button
+            document.getElementById('resend-otp').addEventListener('click', function() {
+                fetch('/resend_otp', {
+                    method: 'GET'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Display success message if OTP resend is successful
+                        alert('OTP resent successfully');
+                    } else {
+                        // Display error message if OTP resend fails
+                        return response.json().then(error => {
+                            alert(error.error || 'Failed to resend OTP');
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while resending OTP');
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>OTP Verification Page</h1>
+        <form id="otp-verification-form" action="/verify_otp" method="POST">
+            <div class="form-group">
+                <label for="otp">Enter OTP:</label>
+                <input type="text" id="otp" name="otp" required>
+            </div>
+            <button type="submit">Verify OTP</button>
+        </form>
+        
+        <form>
+        <button type="button" id="resend-otp" >Resend OTP</button>
+        </form>
+
+    </div>
+
+</body>
+</html>
